@@ -1,5 +1,0 @@
-#!yaml
-
-base:
-  '*':
-    - docker
