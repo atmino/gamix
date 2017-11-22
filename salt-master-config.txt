@@ -1,6 +1,5 @@
 fileserver_backend:
   - git
 
-
 gitfs_remotes:
   - https://github.com/atmino/gamix.git

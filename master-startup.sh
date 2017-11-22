@@ -4,6 +4,8 @@
 # Setting the right timezone
 timedatectl set-timezone 'Europe/Amsterdam'
 
+echo "127.0.1.1 $(hostname)" >> /etc/hosts
+
 #updating sources
 #Getting the saltstack public key to add to apt
 #Copying the repo to a source list
@@ -20,6 +22,7 @@ apt-get install salt-minion -y
 apt-get install python-git -y
 
 #setting the git config for the master
+cp master master.old
 echo -e \
 "fileserver_backend: \n\
   - git \n\
@@ -28,16 +31,13 @@ gitfs_remotes:\n\
   - https://github.com/atmino/gamix.git" > /etc/salt/master
 
 #setting own ip as master in the minion config
+cp minion minion.old
 echo -e "master: $(sudo /sbin/ifconfig ens3 | grep 'inet addr:' | cut -d: -f2 | awk '{ print $1}')" > /etc/salt/minion
 
 #setting up the reactor config
 mkdir /etc/salt/master.d
 touch /etc/salt/master.d/reactor.conf
-echo -e \
-"reactor: \n\
-\n\
-  - 'salt/minion/*/start': \n\
-    - /reactor/start.sls" > /etc/salt/master.d/reactor.conf
+echo -e "reactor:\n  - 'salt/minion/*/start':\n    - /reactor/start.sls" > /etc/salt/master.d/reactor.conf
   
 systemctl restart salt-master  
 systemctl restart salt-minion
