@@ -5,7 +5,7 @@
 timedatectl set-timezone 'Europe/Amsterdam'
 
 #adding hostname to /etc/hosts to avoid sudo messages later
-echo "127.0.1.1 $(hostname)" >> /etc/hosts
+#echo "127.0.1.1 $(hostname)" >> /etc/hosts
 
 #updating sources
 #Getting the saltstack public key to add to apt
