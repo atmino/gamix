@@ -11,5 +11,5 @@ nagios-nrpe-server:
 
 nagios/send_info:
   event.send:
-    - data:
+    - kwargs:
       - ip: {{ ip_of_ens3 }}
