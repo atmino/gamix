@@ -5,3 +5,4 @@ base:
     - nagios.client
   'salt':
     - nagios.server
+    - runners
