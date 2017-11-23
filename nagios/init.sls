@@ -2,4 +2,4 @@
 
 use-script-to-install:
   cmd.script:
-    source: salt://nagios/installing-script.sh
+    - source: salt://nagios/installing-script.sh
