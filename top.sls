@@ -2,5 +2,6 @@
 base:
   '*':
     - docker
+    - nagios.client
   'salt':
-    - nagios
+    - nagios.server
