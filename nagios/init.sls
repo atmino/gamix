@@ -36,6 +36,6 @@ install-nagios:
         htpasswd -c -b /usr/local/nagios/etc/htpasswd.users nagiosadmin porkI9SwSmdQHv9AQmxD
         systemctl restart apache2.services
         systemctl start nagios.service
-      - cwd: tmp/nagios
-      - shell: /bin/bash
-      - unless: test -x /usr/local/nagios
+    - cwd: tmp/nagios
+    - shell: /bin/bash
+    - unless: test -x /usr/local/nagios
