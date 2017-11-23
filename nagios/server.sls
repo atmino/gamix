@@ -10,3 +10,7 @@ nagios-nrpe-server.service:
   
 nagios.service:
   service.running: []
+
+manage-config-dir:
+  file.directory:
+    - name: /usr/local/nagios/etc/servers
