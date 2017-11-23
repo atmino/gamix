@@ -11,7 +11,7 @@ extract-nagios:
 nagios-prereqs:
   cmd.run:
     - name:
-      apt-get install -y autoconf gcc libc6 make wget unzip apache2 php libapache2-mod-php7.0 libgd2-xpm-dev
+        apt-get install -y autoconf gcc libc6 make wget unzip apache2 php libapache2-mod-php7.0 libgd2-xpm-dev
     - shell: /bin/bash
 
 #TODO: update to use pillar
