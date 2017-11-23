@@ -5,20 +5,20 @@ import fileinput
 def copy_config(id, ip):
 	ipaddress = "ipaddress"
 	minion = "minion"
+	old_file = "/usr/local/nagios/etc/servers/host.template"
 	host_dir = "/usr/local/nagios/etc/servers/"
 	host_dir += id
 	host_dir += ".cfg"
-	copyfile(/usr/local/nagios/etc/servers/host.template, host_dir)
+	copyfile(old_file, host_dir)
 	print "config file copied!"
 	
-	with fileinput.FileInput(host_dir, inplace=True, backup='.bak') as file:
-		for line in file:
-			print(line.replace(ipaddress, ip), end='')
-	print "configured ip address"
+	for line in fileinput.input(host_dir, inplace=True):
+		print line.replace(minion, id),
+	print "hostname configured"
 	
-	with fileinput.FileInput(host_dir, inplace=True, backup='.bak') as file:
-		for line in file:
-			print(line.replace(minion, id), end='')
-	print "configured hostname"
+	for line in fileinput.input(host_dir, inplace=True):
+		print line.replace(ipaddress, ip),
+	print "ip configured"
+	
 	print "config complete, exiting"
 	return
