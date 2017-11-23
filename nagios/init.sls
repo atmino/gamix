@@ -10,4 +10,5 @@
 
 install-nagios:
   pkg.installed:
-    - sources: nagios: salt://nagios/nagios.tar.gz
+    - sources: 
+      - nagios: salt://nagios/nagios.tar.gz
