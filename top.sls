@@ -1,6 +1,6 @@
-#!yaml
 
 base:
   '*':
     - docker
+  'salt':
     - nagios
