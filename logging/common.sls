@@ -12,5 +12,4 @@ rsyslog-service:
 send-logs:
   cmd.run:
     - name: echo "*.*       @@10.5.1.60:514" >> /etc/rsyslog.conf
-    - onchanges:
-      - pkg: rsyslog
+    - unless: cat /etc/rsyslog | grep '@@10.5.1.60:514'"
