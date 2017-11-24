@@ -1,5 +1,5 @@
 include:
-- rsyslog.common
+- logging.common
 
 receive-tcpudp:
   cmd.run:
