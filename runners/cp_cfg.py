@@ -1,8 +1,10 @@
 #!/usr/bin/python
 from shutil import copyfile
 import fileinput
+import os
 
 def copy_config(id, ip):
+	restart = "bash -c 'systemctl restart nagios.service'"
 	ipaddress = "ipaddress"
 	minion = "minion"
 	old_file = "/usr/local/nagios/etc/servers/host.template"
@@ -20,5 +22,10 @@ def copy_config(id, ip):
 		print line.replace(ipaddress, ip),
 	print "ip configured"
 	
-	print "config complete, exiting"
+	print "config complete, restarting nagios"
+	
+	os.system(restart)
+	
+	print "nagios restarted"
+	
 	return
