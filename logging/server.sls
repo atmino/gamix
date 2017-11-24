@@ -8,5 +8,3 @@ receive-tcpudp:
             -e 's/#module(load="imtcp")/module(load="imtcp")/'\
             -e 's/#input(type="imtcp" port="514")/input(type="imtcp" port="514")/'\
             /etc/rsyslog.conf
-    - onchanges:
-      - pkg: rsyslog
