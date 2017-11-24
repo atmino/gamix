@@ -10,4 +10,4 @@ setup-server-config:
       - file: /etc/rsyslog.conf
   file.managed:
     - name: /etc/rsyslog.conf
-    - source: salt://logging.server-config.conf
+    - source: salt://logging/server-config.conf
