@@ -16,6 +16,7 @@ make all
 
 #toevoegen van nagios user, en aan groep nagios en www-data
 useradd nagios
+usermod --shell /bin/bash nagios
 usermod -aG nagios www-data
 
 make install
