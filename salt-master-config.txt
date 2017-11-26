@@ -2,4 +2,9 @@ fileserver_backend:
   - git
 
 gitfs_remotes:
-  - https://github.com/atmino/gamix.git
+  - https://github.com/atmino/gamix.git:
+
+runners_dir:
+  - salt://runners
+
+log_level: warning

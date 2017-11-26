@@ -4,7 +4,7 @@ base:
     - docker
     - nagios.client
     - logging.common
-  'salt':
+  '*salt*':
     - nagios.server
     - runners
     - logging.server
