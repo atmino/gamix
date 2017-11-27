@@ -5,7 +5,7 @@
 timedatectl set-timezone 'Europe/Amsterdam'
 
 #adding hostname to /etc/hosts to avoid sudo messages later
-#echo "127.0.1.1 $(hostname)" >> /etc/hosts
+echo "127.0.1.1   $(hostname)" >> /etc/hosts
 
 #updating sources
 #Getting the saltstack public key to add to apt
@@ -18,7 +18,7 @@ apt-get update -y
 #installing the minion
 apt-get install salt-minion -y
 cp /etc/salt/minion /etc/salt/minion.old
-echo "master: 10.5.1.60" > /etc/salt/minion
+echo "master: 10.5.1.116" > /etc/salt/minion
 systemctl restart salt-minion
 
 #from here saltstack takes over
