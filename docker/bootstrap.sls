@@ -20,7 +20,7 @@ update mine for {{ manager }}
 
 {% endfor %}
 
-{% for worker in salt['saltutil.runner']('cache.grains', tgt='swarmworker', expr_form='nodegroup' %}
+{% for worker in salt['saltutil.runner']('cache.grains', tgt='swarmworker', expr_form='nodegroup') %}
 
 bootstrap swarm worker:
   salt.state:
