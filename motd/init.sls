@@ -2,9 +2,23 @@
 figlet:
   pkg.installed: []
 
-lolcat:
+boxes:
   pkg.installed: []
+  
+kill-old-processes:
+  service.dead:
+    - name: motd
+    - enable: False
 
-add-lolcat-path:
-  cmd.run:
-    - name: PATH=/usr/games/lolcat:$PATH
+
+make-motd-dir:
+  file.directory:
+    - name: /etc/update-motd.d
+    - makedirs: True
+
+add-motd:
+  file.managed:
+    - name: /etc/update-motd.d/10-artsy-hello
+    - source: salt://motd/10-artsy-hello
+    - mode: 775
+
