@@ -1,5 +1,5 @@
-{% set join_token = salt['mine.get']('*', 'manager_token').items()[0][1] %}
-{% set join_ip = salt['mine.get']('*', 'manager_ip').items()[0][1][0] %}
+{% set join_token = salt.saltutil.runner('mine.get', tgt='*', fun='manager_token', tgt_type='nodegroup' %}
+{% set join_ip = salt.saltutil.runner('mine.get', tgt='*', fun='manager_ip', tgt_type='nodegroup' %}
 
 include:
   - docker.init
