@@ -3,6 +3,8 @@ base:
   '*':
     - docker
     - nagios.client
-  'salt':
+    - logging.common
+  '*salt*':
     - nagios.server
     - runners
+    - logging.server

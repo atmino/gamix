@@ -22,25 +22,37 @@ apt-get install salt-minion -y
 apt-get install python-git -y
 
 #setting the git config for the master
-cp master master.old
+cp /etc/salt/master /etc/salt/master.old
 echo -e \
 "fileserver_backend: \n\
   - git \n\
 \n\
 gitfs_remotes:\n\
-  - https://github.com/atmino/gamix.git" > /etc/salt/master
+  - https://github.com/atmino/gamix.git\n\
+\n\
+runners_dir:\n\
+  - salt://runners" > /etc/salt/master
 
 #setting own ip as master in the minion config
-cp minion minion.old
-echo -e "master: $(sudo /sbin/ifconfig ens3 | grep 'inet addr:' | cut -d: -f2 | awk '{ print $1}')" > /etc/salt/minion
+cp /etc/salt/minion /etc/salt/minion.old
+echo -e "master: $(hostname)" > /etc/salt/minion
 
 #setting up the reactor config
 mkdir /etc/salt/master.d
 touch /etc/salt/master.d/reactor.conf
-echo -e "reactor:\n  - 'salt/minion/*/start':\n    - /reactor/start.sls" > /etc/salt/master.d/reactor.conf
-  
-systemctl restart salt-master  
+
+echo -e "reactor:\n\
+  - 'salt/auth':\n\
+    - /reactor/auth-pending.sls\n\
+\n\
+  - 'salt/minion/*/start':\n\
+    - /reactor/auth-complete.sls\n\
+\n\
+  - 'nagios/send_info':\n\
+    - /reactor/monitor.sls\n " > /etc/salt/master.d/reactor.conf
+
 systemctl restart salt-minion
+systemctl restart salt-master  
 
 #accept itself as minion, salt will manage the rest from here
 salt-key -a $(hostname) -y
