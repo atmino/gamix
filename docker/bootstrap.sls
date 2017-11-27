@@ -6,7 +6,7 @@
 {% set manager_sls = 'docker.manager.join' %}
 {% endif %}
 
-bootstrap swarm manager:
+bootstrap swarm manager {{ manager }}:
   salt.state:
     - sls: {{ manager_sls }}
     - tgt: {{ manager }}
@@ -20,7 +20,7 @@ update mine for {{ manager }}:
 
 {% endfor %}
 
-{% for worker in salt['saltutil.runner']('cache.grains', tgt='swarmworker', expr_form='nodegroup') %}
+{% for worker in salt['saltutil.runner']('cache.grains', tgt='swarmworker', tgt_type='nodegroup') %}
 
 bootstrap swarm worker:
   salt.state:
