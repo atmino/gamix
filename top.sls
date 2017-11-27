@@ -2,11 +2,11 @@
 base:
   '*':
     - docker.install
-    - docker.worker.join
     - docker.mine
     - nagios.client
     - logging.common
     - motd
+    - docker.worker.join
   '*salt*':
     - nagios.server
     - runners

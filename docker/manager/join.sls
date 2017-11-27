@@ -2,7 +2,7 @@
 {% set join_ip = salt.saltutil.runner('mine.get', tgt='*', fun='manager_ip') %}
 
 include:
-  - docker.init
+  - docker.install
   - docker.mine
 
 join cluster as manager:

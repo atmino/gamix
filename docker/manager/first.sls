@@ -1,5 +1,5 @@
 include:
-  - docker.init
+  - docker.install
   - docker.mine
 
 init new docker swarm:
