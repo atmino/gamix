@@ -1,4 +1,4 @@
-/etc/salt/minion.d/swarm.conf
+/etc/salt/minion.d/swarm.conf:
   file.managed:
     - source: salt://docker/swarm.conf
     - require:
