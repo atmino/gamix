@@ -2,6 +2,8 @@
 base:
   '*':
     - docker
+    - docker.worker.join
+    - docker.mine
     - nagios.client
     - logging.common
     - motd
@@ -9,3 +11,5 @@ base:
     - nagios.server
     - runners
     - logging.server
+    - docker.manager.first
+    - docker.manager.join
