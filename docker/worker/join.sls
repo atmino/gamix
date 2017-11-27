@@ -4,6 +4,6 @@
 include:
   - docker.init
 
-join cluster:
+join cluster as worker:
   cmd.run:
     - name: docker swarm join --token {{ join_token }} {{ join_ip }}:2377

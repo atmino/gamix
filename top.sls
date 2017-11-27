@@ -1,7 +1,7 @@
 
 base:
   '*':
-    - docker
+    - docker.install
     - docker.worker.join
     - docker.mine
     - nagios.client

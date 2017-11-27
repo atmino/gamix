@@ -5,8 +5,6 @@ include:
   - docker.init
   - docker.mine
 
-join cluster:
+join cluster as manager:
   cmd.run:
-    - name: 'docker swarm join --token {{ join_token }} {{ join_ip }}:2377
-    - require:
-      - pkg: docker-ce
+    - name: docker swarm join --token {{ join_token }} {{ join_ip }}:2377
