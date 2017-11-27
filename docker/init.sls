@@ -25,6 +25,6 @@ docker-py requirements:
     
 docker-py install:
   pip.installed:
-    - name: docker-py
+    - name: docker
     - reload_modules: true
 
