@@ -13,7 +13,7 @@ manage-template:
   file.managed:
     - name: /usr/local/nagios/etc/servers/host.template
     - source: salt://nagios/host.template
-    
+
 nagios-nrpe-server.service:
   service.running: []
   

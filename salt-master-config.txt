@@ -3,8 +3,9 @@ fileserver_backend:
 
 gitfs_remotes:
   - https://github.com/atmino/gamix.git:
+    - base: logging
 
-runner_dir:
-  - salt://runners
+runner_dirs:
+  - /etc/salt/runners
 
 log_level: warning
