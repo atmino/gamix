@@ -8,6 +8,7 @@ use-script-to-install:
 manage-config-dir:
   file.directory:
     - name: /usr/local/nagios/etc/servers
+    - makedirs: True
 
 manage-template:
   file.managed:

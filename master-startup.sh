@@ -1,4 +1,4 @@
-#!bin/sh
+#!bin/bash
 # To be executed to make a nice salt-minion
 
 # Setting the right timezone
@@ -23,36 +23,22 @@ apt-get install python-git -y
 
 #setting the git config for the master
 cp /etc/salt/master /etc/salt/master.old
-echo -e \
-"fileserver_backend: \n\
-  - git \n\
-\n\
-gitfs_remotes:\n\
-  - https://github.com/atmino/gamix.git\n\
-\n\
-runners_dir:\n\
-  - salt://runners" > /etc/salt/master
+echo -e "fileserver_backend:\n  - git\n\ngitfs_remotes:\n  - https://github.com/atmino/gamix.git:\n    - base: motd\n\nrunner_dirs:\n  - /etc/salt/runners\n\nlog_level: warning\n\nstate_output: mixed\n" > /etc/salt/master
 
 #setting own ip as master in the minion config
 cp /etc/salt/minion /etc/salt/minion.old
-echo -e "master: $(hostname)" > /etc/salt/minion
+echo "master: $(hostname)" > /etc/salt/minion
 
 #setting up the reactor config
 mkdir /etc/salt/master.d
 touch /etc/salt/master.d/reactor.conf
 
-echo -e "reactor:\n\
-  - 'salt/auth':\n\
-    - /reactor/auth-pending.sls\n\
-\n\
-  - 'salt/minion/*/start':\n\
-    - /reactor/auth-complete.sls\n\
-\n\
-  - 'nagios/send_info':\n\
-    - /reactor/monitor.sls\n " > /etc/salt/master.d/reactor.conf
+echo -e "reactor:\n  - 'salt/auth':\n    - salt://reactor/auth-pending.sls\n\n  - 'salt/minion/*/start':\n    - salt://reactor/auth-complete.sls\n\n  - 'nagios/send_info':\n    - salt://reactor/monitor.sls\n " > /etc/salt/master.d/reactor.conf
 
 systemctl restart salt-minion
 systemctl restart salt-master  
+
+salt-run fileserver.update
 
 #accept itself as minion, salt will manage the rest from here
 salt-key -a $(hostname) -y

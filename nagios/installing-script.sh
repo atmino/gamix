@@ -1,3 +1,4 @@
+#/bin/bash
 #setup monitor service
 #van https://support.nagios.com/kb/article/nagios-core-installing-nagios-core-from-source.html#Ubuntu
 #Nagios CORE
@@ -59,7 +60,7 @@ make install
 
 #configureer waar de config vandaan wordt gehaald
 mkdir /usr/local/nagios/etc/servers
-sed -i -e 's|#cfg_dir=/usr/local/nagios/etc/nagios.cfg|cfg_dir=/usr/local/nagios/etc/servers|' /usr/local/nagios/etc/nagios.cfg
+sed -i -e 's|#cfg_dir=/usr/local/nagios/etc/servers|cfg_dir=/usr/local/nagios/etc/servers|' /usr/local/nagios/etc/nagios.cfg
 
 #herstart de service
 systemctl restart nagios.service

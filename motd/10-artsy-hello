@@ -1,0 +1,5 @@
+#!bin/sh
+
+echo
+figlet HELLO AND WELCOME TO GAMIX SERVER: $(hostname)
+echo
