@@ -1,5 +1,5 @@
-{% set join_token = salt.saltutil.runner('mine.get', tgt='*', fun='manager_token') %}
-{% set join_ip = salt.saltutil.runner('mine.get', tgt='*', fun='manager_ip') %}
+{% set join_token = salt.saltutil.runner('mine.get', tgt='*', fun='manager_token')[1] %}
+{% set join_ip = salt.saltutil.runner('mine.get', tgt='*', fun='manager_ip')[1] %}
 
 include:
   - docker.install
