@@ -15,8 +15,8 @@ update mine for {{ manager }}:
   salt.function:
     - name: mine.update
     - tgt: '*'
-#    - require:
-#      - salt: bootstrap swarm manager {{ manager }}
+    - require:
+      - salt: bootstrap swarm manager {{ manager }}
 
 {% endfor %}
 
