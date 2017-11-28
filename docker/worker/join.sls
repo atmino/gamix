@@ -3,7 +3,6 @@
 
 include:
   - docker.install
-  - docker.mine
 
 join cluster as worker:
   cmd.run:
