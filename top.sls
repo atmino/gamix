@@ -1,15 +1,12 @@
 
 base:
   '*':
-    - docker.install
-    - docker.mine
+    - motd
     - nagios.client
     - logging.common
-    - motd
-    - docker.worker.join
+    - docker.install
   '*salt*':
-    - nagios.server
     - runners
+    - nagios.server
     - logging.server
-    - docker.manager.first
-    - docker.manager.join
+    - docker.mine
